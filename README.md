@@ -20,4 +20,4 @@ The electron self-energy of electron-phonon interaction in Migdal approximation 
 where $g$ is electron-phonon coupling approximated with constant value. $b_{\mathbf{q}\nu} = (\exp[\hbar \omega_{\mathbf{q}}/k_BT] - 1)^{-1}$ corresponds to the Bose occupation function for phonons with wave vector $\mathbf{q}$ and frequency $\omega_{\mathbf{q \nu}}$. Phonon spectra is introduced as a single linear branch $\omega_{\mathbf{q}} = v q$ with sound velocity $v$.  In turn, $f^\sigma_{\mathbf{k}} = (\exp[(\varepsilon^\sigma_{\mathbf{k}})/k_BT] + 1)^{-1}$ is the Fermi occupation function for the electron states with energy $\varepsilon^\sigma_{\mathbf{k}}$ given respect to the Fermi level.
 
 
-![alt text](https://github.com/danis-b/TB_elph/blob/main/example/Square_lattice.jpg)
+![alt text](https://github.com/danis-b/TB_elph/blob/main/example/square_lattice.jpg)
