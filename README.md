@@ -1,4 +1,9 @@
-This script calculates electron-phonon coupling contribution to exchange interaction $J_{ij}$ for one band model given by nn hopping parameter $t$ and on-site splitting $\Delta$. Exchange coupling is calculated using Green's function technique (see [1](https://www.sciencedirect.com/science/article/abs/pii/0304885387907219), [2](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.71.184434)):
+This script calculates electron-phonon coupling contribution to exchange interaction $J_{ij}$ for a square lattice at half-filling interacting with acoustic phonons in the equilibrium:
+```math
+    H = t\sum_{\langle ij \rangle \sigma} c^\dagger_{i \sigma} c_{j \sigma} + \frac{\Delta}{2} \sum_{i} ( n^\uparrow_i - n^\downarrow_i) + 
+   + \sum_{\bf q} \omega_{\bf q} b^{\dagger}_{\bf q} b_{\bf q} + \sum_{{\bf q},<ij>\sigma} g_{\bf q} (b_{\bf q}^{\dagger} + b_{-{\bf q}})c_{i\sigma}^{\dagger} c_{j\sigma},
+```
+where $c_{i \sigma}^\dagger (c_{i\sigma})$ and $b_{\bf q}^\dagger (b_{\bf q})$ are the creation (annihilation) operator of electrons at site $i$ and spin $\sigma$, and phonons with wave vector ${\bf q}$ and frequency $\omega_{\bf q}$, $n_i^\sigma = c_{i \sigma}^\dagger c_{i\sigma}$, $t$ is the nearest-neighbor hopping, and $\langle ij \rangle$ labels the nearest-neighbour pairs. $\Delta$ is the on-site interaction giving rise to the exchange splitting of electronic bands, and $g_{\bf q}$ is the electron-phonon coupling, which can be rewritten via dimensionless electron-phonon coupling constant $\lambda$.  Exchange coupling is calculated using Green's function technique (see [1](https://www.sciencedirect.com/science/article/abs/pii/0304885387907219), [2](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.71.184434)):
 ```math
 J_{ij}(T) = -\frac{1}{2 \pi S^2} \int \limits_{-\infty}^{E_F} d \omega  \,{\rm Im} \left[  \widetilde{\Delta}_i (\omega, T) \widetilde{G}_{ij}^{\downarrow} (\omega, T) \widetilde{\Delta}_j (\omega, T) \widetilde{G}_{ji} ^{\uparrow} (\omega, T) \right],
 ```
@@ -14,10 +19,15 @@ Here $\widetilde{\Delta} (\omega, T)$ and $\widetilde{G}(\omega, T)$  stands for
 
 The electron self-energy of electron-phonon interaction in Migdal approximation has the form
 ``` math
-\Sigma^\sigma_{\textrm{elph}}(\omega, \mathbf{k} T)  =  g^2 \sum_{\mathbf{q}} \left[ \frac{b_{\mathbf{q}} + f^\sigma_{\mathbf{k + q}}}{\omega - \varepsilon^\sigma_{\mathbf{k + q}} + \hbar  \omega_{\mathbf{q}} - i\eta}  + \frac{b_{\mathbf{q}} +1 - f^\sigma_{\mathbf{k + q}}}{\omega - \varepsilon^\sigma_{\mathbf{k + q}} - \hbar  \omega_{\mathbf{q}} - i\eta} \right]  ,  
+\Sigma^\sigma_{\textrm{elph}}(\omega, \mathbf{k}, T)  =  \sum_{\mathbf{q}} g^2_{\bf q} \left[ \frac{b_{\mathbf{q}} + f^\sigma_{\mathbf{k + q}}}{\omega - \varepsilon^\sigma_{\mathbf{k + q}} + \hbar  \omega_{\mathbf{q}} + i\eta}  + \frac{b_{\mathbf{q}} +1 - f^\sigma_{\mathbf{k + q}}}{\omega - \varepsilon^\sigma_{\mathbf{k + q}} - \hbar  \omega_{\mathbf{q}} + i\eta} \right].
 ```
 
-where $g$ is electron-phonon coupling approximated with constant value. $b_{\mathbf{q}\nu} = (\exp[\hbar \omega_{\mathbf{q}}/k_BT] - 1)^{-1}$ corresponds to the Bose occupation function for phonons with wave vector $\mathbf{q}$ and frequency $\omega_{\mathbf{q \nu}}$. Phonon spectra is introduced as a single linear branch $\omega_{\mathbf{q}} = v q$ with sound velocity $v$.  In turn, $f^\sigma_{\mathbf{k}} = (\exp[(\varepsilon^\sigma_{\mathbf{k}})/k_BT] + 1)^{-1}$ is the Fermi occupation function for the electron states with energy $\varepsilon^\sigma_{\mathbf{k}}$ given respect to the Fermi level.
+At long wavelengths and high temperature limit it can be recast in a simple form as:
+``` math
+\Sigma^\sigma_{\textrm{elph}}(\omega, \mathbf{k}, T)  = 2 \lambda \frac{T}{N^\sigma_F}    \sum_{\mathbf{q}} (\omega - \varepsilon^\sigma_{\mathbf{k + q}} + i\eta)^{-1}.
+```
+
+The presence of electron-phonon coupling with equilibrium phonon distribution leads to a notable suppression of exchange interactions with temperature:
 
 
 ![alt text](https://github.com/danis-b/TB_elph/blob/main/example/square_lattice.jpg)
