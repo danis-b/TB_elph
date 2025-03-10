@@ -1,3 +1,11 @@
+**“Phonon-induced renormalization of exchange interactions in metallic two-dimensional magnets”**  
+by Danis Badrtdinov, Alexander N. Rudenko and Mikhail I. Katsnelson  
+
+[![arXiv](https://img.shields.io/badge/arXiv-2406.05229-b31b1b)](https://arxiv.org/abs/2406.05229)
+[![DOI](https://img.shields.io/badge/DOI-10.1103/PhysRevB.110.L060409-blue)](https://doi.org/10.1103/PhysRevB.110.L060409)
+
+
+
 This script calculates electron-phonon coupling contribution to exchange interaction $J_{ij}$ for a square lattice at half-filling interacting with acoustic phonons in the equilibrium:
 ```math
     H = t\sum_{\langle ij \rangle \sigma} c^\dagger_{i \sigma} c_{j \sigma} + \frac{\Delta}{2} \sum_{i} ( n^\uparrow_i - n^\downarrow_i) + 
